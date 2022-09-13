@@ -1,0 +1,29 @@
+{% extends 'partials/base.html' %}
+{% block title %} Details of the car {{ car.brand }}{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 offset-md-3"><br>
+                <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card text-light bg-dark" style="max-width: 100%;">
+                        <div class="card-header">{{ car.brand }}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Details</h5>
+                            <p class="card-text">
+                                Brand: {{ car.brand }} <br>
+                                Type: {{ car.type_of_car }} <br>
+                                Num plate: {{ car.num_plate }} <br>
+                                Is electric: {% if is_electric is True %} YES {% else %} NO {% endif %} <br>
+                                Year: {{ car.year }} <br>
+                                Owner: {{ car.user.username}}<br>
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{% url 'list_of_cars' %}" class="btn btn-danger">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+{% block title %} List of M.O.T. {% endblock %}
+{% block content %}
+    <div class="container"><br><br>
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <div class="card-title">
+                <h4 class="text-center">List of M.O.T.</h4>
+            </div>
+            <table class="table table-secondary table-hover">
+                <thead>
+                <tr>
+                    <th>Sum</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Car</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for mot in all_mots %}
+                    <tr>
+                        <td>{{ mot.sum }}</td>
+                        <td>{{ mot.start_date }}</td>
+                        <td>{{ mot.end_date }}</td>
+                        <td>{{ mot.car.num_plate }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'update_mot' mot.id %}">Update</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_mot' mot.id %}">Delete</a>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'partials/base.html' %}
+{% block title %} List of cars {% endblock %}
+{% block content %}
+    <div class="container"><br><br>
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <div class="card-title">
+                <h4 class="text-center">List of Cars</h4>
+            </div>
+            {% for car in all_cars %}
+                <div class="card text-white bg-secondary mb-3">
+                    <h5 class="card-header">{{ car.brand }}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ car.num_plate }}</h5>
+                        <p class="card-text">Owner: {{ car.user.username }} </p>
+                        <p class="card-text">Type of the car: {{ car.type_of_car }} </p>
+                        <p class="card-text">Year: {{ car.year }} </p>
+                        <p class="card-text">Is Electric: {{ car.is_electric }} </p>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'update_car' car.id %}">Update</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'delete_car' car.id %}">Delete</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'detail_car' car.id %}">Details</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                Docs
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'create_insurance' %}">Add insurance</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'create_mot' %}">Add M.O.T</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'create_roadTax' %}">Add road tax</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'partials/base.html' %}
+{% block title %} List of road taxes {% endblock %}
+{% block content %}
+    <div class="container"><br><br>
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
+            <div class="card-title">
+                <h4 class="text-center">List of road taxes</h4>
+            </div>
+            <table class="table table-secondary table-hover">
+                <thead>
+                <tr>
+                    <th>Sum</th>
+                    <th>Start date</th>
+                    <th>End date</th>
+                    <th>Car</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tax in all_roadTaxes %}
+                    <tr>
+                        <td>{{ tax.sum }}</td>
+                        <td>{{ tax.start_date }}</td>
+                        <td>{{ tax.end_date }}</td>
+                        <td>{{ tax.car.num_plate }}</td>
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Actions
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'update_roadTax' tax.id %}">Update</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{% url 'delete_roadTax' tax.id %}">Delete</a>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
